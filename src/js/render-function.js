@@ -1,4 +1,7 @@
 import iziToast from 'izitoast';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import 'izitoast/dist/css/iziToast.min.css';
 
 export const renderImg = images => {
   const gallery = document.querySelector('.gallery');
@@ -8,8 +11,15 @@ export const renderImg = images => {
     const imgElement = document.createElement('img');
     imgElement.src = image.webformatURL;
     imgElement.alt = image.tags;
+
+    const linkElement = document.createElement('a');
+    linkElement.href = image.largeImageURL;
+    linkElement.appendChild(imgElement);
+
     gallery.appendChild(imgElement);
   });
+  const lightbox = new SimpleLightbox('.gallery a');
+  lightbox.refresh();
 };
 
 export const showLoader = () => {
