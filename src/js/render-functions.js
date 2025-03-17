@@ -7,6 +7,8 @@ export const renderImg = images => {
   const gallery = document.querySelector('.gallery');
   gallery.innerHTML = '';
 
+  showLoader();
+
   if (images.length === 0) {
     return;
   }

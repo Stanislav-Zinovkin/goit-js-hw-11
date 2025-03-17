@@ -4,7 +4,7 @@ import {
   showLoader,
   hideLoader,
   errorMessage,
-} from './js/render-function.js';
+} from './js/render-functions.js';
 
 const form = document.querySelector('.form');
 form.addEventListener('submit', async event => {
