@@ -66,5 +66,6 @@ export const errorMessage = () => {
     title: 'Error',
     message:
       'Sorry, there are no images matching your search query. Please try again!',
+    position: 'topRight',
   });
 };
