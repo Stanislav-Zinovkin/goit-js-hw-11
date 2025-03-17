@@ -3,6 +3,12 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import 'izitoast/dist/css/iziToast.min.css';
 
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'data-description',
+  captionPosition: 'bottom',
+  captionDelay: 0,
+});
+
 export const renderImg = images => {
   const gallery = document.querySelector('.gallery');
   gallery.innerHTML = '';
@@ -33,22 +39,17 @@ export const renderImg = images => {
     const infoBox = document.createElement('div');
     infoBox.classList.add('info-box');
     infoBox.innerHTML = `
-  <p><strong>Likes:</strong> <span class="info-value">${image.likes}</span></p>
-  <p><strong>Views:</strong> <span class="info-value">${image.views}</span></p>
-  <p><strong>Comments:</strong> <span class="info-value">${image.comments}</span></p>
-  <p><strong>Downloads:</strong> <span class="info-value">${image.downloads}</span></p>
-`;
+      <p><strong>Likes:</strong> <span class="info-value">${image.likes}</span></p>
+      <p><strong>Views:</strong> <span class="info-value">${image.views}</span></p>
+      <p><strong>Comments:</strong> <span class="info-value">${image.comments}</span></p>
+      <p><strong>Downloads:</strong> <span class="info-value">${image.downloads}</span></p>
+    `;
 
     galleryItem.appendChild(linkElement);
-
     galleryItem.appendChild(infoBox);
     gallery.appendChild(galleryItem);
   });
-  const lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'data-description',
-    captionPosition: 'bottom',
-    captionDelay: 0,
-  });
+
   lightbox.refresh();
   hideLoader();
 };
