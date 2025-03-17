@@ -1,10 +1,10 @@
-import { fetchImages } from './pixabay-api';
+import { fetchImages } from './js/pixabay-api.js';
 import {
   renderImg,
   showLoader,
   hideLoader,
   errorMessage,
-} from './render-functions';
+} from './js/render-function.js';
 
 const form = document.querySelector('.form');
 form.addEventListener('submit', async event => {
@@ -15,17 +15,18 @@ form.addEventListener('submit', async event => {
 
   showLoader();
 
-  try {
-    const images = await fetchImages(searchQuery);
-
-    if (images.length === 0) {
+  fetchImages(searchQuery)
+    .then(images => {
+      if (images.length === 0) {
+        errorMessage();
+      } else {
+        renderImg(images);
+      }
+    })
+    .catch(error => {
       errorMessage();
-    } else {
-      renderImg(images);
-    }
-  } catch (error) {
-    errorMessage();
-  } finally {
-    hideLoader();
-  }
+    })
+    .finally(() => {
+      hideLoader();
+    });
 });
